@@ -45,14 +45,13 @@
 									Institute Of Technology Madras</span></a>
 						</div>
 						<div class="col-md-4 d-md-flex justify-content-end mb-md-0 mb-3 searchbar">
-							<form action="#" class="searchform order-lg-last">
-								<div class="form-group d-flex">
-									<input type="text" class="form-control pl-3" placeholder="Search">
-									<button type="submit" placeholder="" class="form-control search"><span
-											class="fa fa-search"></span></button>
-								</div>
+							<form action="#" class="searchform order-lg-last" autocomplete="off">
+							  <div class="form-group d-flex" style="margin-right: 0px; margin-bottom: 1rem;">
+								<input type="text" class="form-control pl-3" id="searchInput" placeholder="Search">
+								<button type="submit" class="form-control search"><span class="fa fa-search"></span></button>
+							  </div>
 							</form>
-						</div>
+						  </div>
 					</div>
 				</div>
 			</div>
@@ -982,7 +981,51 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/main.js"></script>
 
+<!-- searchbar -->
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+	$('form.searchform').submit(function(e) {
+	  e.preventDefault();
+	  var searchQuery = $('#searchInput').val().trim();
+	  findAndHighlight(searchQuery);
+	});
+
+	function findAndHighlight(query) {
+	  if (query) {
+		var found = window.find(query, false, false, true, false, true, false);
+		if (!found) {
+		  clearHighlighting();
+		} else {
+		  var count = getSearchCount(query);
+		  displaySearchCount(count);
+		}
+	  } else {
+		clearHighlighting();
+		displaySearchCount(0);
+	  }
+	}
+
+	function clearHighlighting() {
+	  var selection = window.getSelection();
+	  selection.removeAllRanges();
+	}
+
+	function getSearchCount(query) {
+	  var text = document.body.innerText;
+	  var regex = new RegExp(query, 'gi');
+	  var matches = text.match(regex);
+	  return matches ? matches.length : 0;
+	}
+
+	function displaySearchCount(count) {
+	  var searchCount = $('.searchCount');
+	  searchCount.text(count);
+	  searchCount.toggle(count > 0);
+	}
+  });
+</script>
 
 </body>
 

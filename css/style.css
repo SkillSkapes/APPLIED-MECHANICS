@@ -12637,6 +12637,7 @@ video {
   background: rgba(255, 255, 255, 0.8);
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
   padding: 10px;
+  justify-content: center;
 }
 
 .faculty-Achievement-details {
@@ -13407,7 +13408,6 @@ hr.solid-second {
     padding: 15px 0px 5px 0px;
     text-align: center;
   }
-
   .education p {
     font-size: 15px;
   }
@@ -13415,7 +13415,7 @@ hr.solid-second {
   .accordion-body li {
     font-size: 15px;
   }
-
+  
   .accordion-header span {
     font-size: 18px;
   }
@@ -13558,6 +13558,15 @@ hr.solid-second {
 
   .dep-btn {
     font-size: 12px;
+  }
+  .inner-faculty-col{
+    display: block;
+  }
+  .contact_details{
+    flex-direction: column;
+  }
+  .contact_details .education{
+   text-align: center;
   }
 
 
